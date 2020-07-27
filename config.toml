@@ -1,0 +1,5 @@
+host ='localhost'
+port =7777
+timeout=3
+command='./scan_1.sh'
+size=4096

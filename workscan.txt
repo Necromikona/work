@@ -1,0 +1,12 @@
+#!/bin/bash
+
+IFACE=$(iw dev|grep "Interface"|sed "s/\Interface //")
+#echo $IFACE
+sudo iw dev $IFACE scan | awk '
+BEGIN{{print "\r\nBSS\t\t\tSignal\tSSID\t\t\t\tChannel\t\tWPS\t"}} 
+/BSS [a-z0-9:]{10}/{print ""; printf substr($2,1,17)} 
+/signal: /{printf "\t"$2"\t"} 
+/SSID: /{system("echo \""$2"\"| cut -c -25 | head -c -1")} 
+/DS Parameter set/{printf"\t\t\t\t"$5} 
+/* Authentication suites:/{printf "\t\t"$4}';
+ echo

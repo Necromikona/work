@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+sudo iw dev wlp2s0 scan | egrep "signal:|SSID:|BSS:|DS Parameter set:|Authentication suites:" | sed -e "s/\tsignal: //" -e "s/\tSSID: //" -e "s/\tBSS: //" -e "s/\tDS Parameter set: //" -e "s/\Authentication suites: //"| awk '{ORS = (NR % 2 == 0)? "\n" : " "; print}' | sort >>testWifi.txt
