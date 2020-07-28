@@ -7,7 +7,7 @@ BEGIN{}
 /BSS [a-z0-9:]{10}/{print ""; printf substr($2,1,17)}
 /signal: /{printf "\t"$2"\t"}  
 /DS Parameter set/{printf"\t\t"$5}
-/SSID: /{printf "\t"$2"\t"}
+/SSID: /{printf " \t"$2"\t"}
 /WPA:|RSN:|WPE:/{printf "\t"$1}
 /* Authentication suites:/{printf $4}' | sort -k 2
 
